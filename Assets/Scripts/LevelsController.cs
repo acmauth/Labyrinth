@@ -2,14 +2,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+ * This class represents a controller for the levels. It contains all of the levels.
+ *
+ * Η κλάση αυτή αναπαραστά ένα controller για τα επίπεδα. Περιέχει όλα τα επίπεδα.
+ */
 public class LevelsController : MonoBehaviour
 {
     public List<Level> levels;
-    private int currentLevel;
-    
+
     // Start is called before the first frame update
     void Start()
     {
+        // If the levels are not specified in the inspector then find all the objects that have a Level script
         if (levels == null)
         {
             levels = new List<Level>();
@@ -21,14 +26,22 @@ public class LevelsController : MonoBehaviour
             }
         }
         
+        // Sort the levels
         levels.Sort((a,b)=>a.level.CompareTo(b.level));
-
+        
         CheckLevels();
     }
 
+    /*
+     * This method is called when a level-button is pressed. It takes that level's number and checks if it is unlocked. Then it goes to the
+     * appropriate scene.
+     *
+     * Η μέθοδος καλείται όταν ένα κουμπί-επίπεδο πατιέται. Παίρνει τον αριθμό του επιπέδου και ελέγχει αν είναι ξεκλέιδωτο. Τότε πάει στην κατάλληλη
+     * σκηνή.
+     */
     public void ChooseLevel(int level)
     {
-        if (levels[level-1].CanBeUnlocked())
+        if (levels[level-1].Unlocked())
         {
             Debug.Log("Going to Level " + level);
             //SceneManager.LoadScene("Level" + level);
@@ -45,7 +58,7 @@ public class LevelsController : MonoBehaviour
             Debug.Log("Level " + level + " not unlocked.");
         }
     }
-
+    
     private void CheckLevels()
     {
         foreach (Level level in levels)

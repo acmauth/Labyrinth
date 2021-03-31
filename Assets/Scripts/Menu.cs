@@ -4,6 +4,8 @@ using UnityEngine.UI;
 /*
  * A script that contains functions ready to be used by the event system handler
  * whenever some buttons are pressed.
+ *
+ * Ένα script που περιέχει κάποιες συναρτήσεις έτοιμες να χρησιμοποιηθούν όταν κάποιο από τα κουμπιά πατιούνται.
  */
 public class Menu : MonoBehaviour
 {

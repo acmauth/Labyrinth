@@ -1,5 +1,10 @@
 using System.Collections.Generic;
 
+/*
+ * This class represents the stats of the game that will be saved.
+ *
+ * Η κλάση αυτή αναπαραστά τα stats του παιχνιδιού τα οποία θα σωθούν.
+ */
 [System.Serializable]
 public class Stats
 {

@@ -2,7 +2,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /*
- * This class is responsible for showing all of the 10 highest stats/scores of that have been achieved and the usernames.
+ * This class is responsible for showing all of the 10 highest stats/scores
+ * of that have been achieved and the usernames.
+ *
+ * Η κλάση είναι υπεύθυνη για να εμφανίζει τα 10 μεγαλύτερα score των παικτών μαζί με τα username.
  */
 public class ShowStats : MonoBehaviour
 {
@@ -17,9 +20,6 @@ public class ShowStats : MonoBehaviour
             _stats = new Stats();
             SaveSystem.Save(_stats);
         }
-        
-        _stats.Add(100, "Someone");
-        SaveSystem.Save(_stats);
 
         SetTexts();
     }

@@ -1,6 +1,11 @@
 using System;
 using System.Collections.Generic;
 
+/*
+ * This class represents the levels that have been unlocked.
+ *
+ * Η κλάση αυτή αναπαραστά τα επίπεδα που έχουν ολοκληρωθεί.
+ */
 [Serializable]
 public class UnlockedLevels
 {

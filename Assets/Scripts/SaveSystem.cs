@@ -5,6 +5,9 @@ using UnityEngine;
 /*
  * This class implements a basic save system. Everything you want to save or load will be saved or loaded
  * from the currentPath file. Warning!!! : Make sure you switch the currentPath to the path you want.
+ *
+ * Η κλάση υλοποιεί ένα σύστημα αποθήκευσης. Οτιδήποτε θέλεις να αποθηκεύσεις ή να φορτώσεις μπορείς να το κάνεις
+ * από το currentPath αρχείο. ΠΡΟΣΟΧΗ!!! : Φροντίστε να αλλάξετε το currentPath στο path που θέλετε.
  */
 public static class SaveSystem
 {

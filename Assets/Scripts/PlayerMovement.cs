@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private float xAxis;
 
     [Range(1.0f, 50.0f)]
-    private float movementSpeed = 10.0f;
+    public float movementSpeed = 10.0f;
 
     [Range(10.0f, 100.0f)]
     public float jumpPower = 10.0f;
@@ -17,8 +17,9 @@ public class PlayerMovement : MonoBehaviour
     [Range(10.0f, 3.0f)]
     public float accelTime = 0.6f;
     [Range(10.0f, 3.0f)]
-    public float decelTime = 0.2f;
+    public float decelTimePublic = 0.2f;
 
+    private float decelTimePrivate;
     private float timeAccelerating;
     private float timeDecelarating;
     private float lastAcceleration;
@@ -28,16 +29,26 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isGrounded;
     private bool jumpPressed;
+
+    [SerializeField]
+    private bool isCrouching;
+    private bool crouchPressed = false;
+
+    [SerializeField]
+    private bool isSliding;
+
     private BoxCollider2D box;
     private Rigidbody2D rb;
     public Transform GroundCheck;
     public LayerMask groundLayer;
+    public SpriteRenderer sprite;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
+        decelTimePrivate = decelTimePublic;
         box = gameObject.GetComponent<BoxCollider2D>();
         rb = gameObject.GetComponent<Rigidbody2D>();
     }
@@ -45,13 +56,15 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         ParseInput();
         UpdateAcceleration();
         DetectGrounded();
         Move();
         Jump();
+        Crouch();
     }
+
+    // computing the acceleration
     void UpdateAcceleration()
     {
         if (xAxis != 0.0f)
@@ -70,19 +83,21 @@ public class PlayerMovement : MonoBehaviour
             timeAccelerating = 0.0f;
             timeDecelarating += Time.deltaTime;
 
-            acceleration = Mathf.Abs(lastAcceleration) - timeDecelarating / decelTime;
+            acceleration = Mathf.Abs(lastAcceleration) - timeDecelarating / decelTimePrivate;
             acceleration = Mathf.Clamp(acceleration, 0.0f, 1.0f);
             acceleration *= direction;
         }
 
     }
+
     void ParseInput()
     {
-
         xAxis = Input.GetAxisRaw("Horizontal");
         jumpPressed = Input.GetKeyDown(KeyCode.Space);
+        crouchPressed = Input.GetKey(KeyCode.LeftShift);
     }
 
+    // how the player moves
     void Move()
     {
         transform.position += Vector3.right * Time.deltaTime * movementSpeed * acceleration;
@@ -106,9 +121,42 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
-        if (jumpPressed && isGrounded)
+        if (jumpPressed && isGrounded && !isCrouching)
         {
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+        }
+
+    }
+
+    void Crouch()
+    {
+        if (crouchPressed)
+        {
+            box.size = new Vector2(box.size.x, 4.5f);
+            box.offset = new Vector2(box.offset.x, 1.1f);
+
+            if (timeAccelerating > 1.0f)
+            {
+                isCrouching = false;
+                isSliding = true;
+                decelTimePrivate = decelTimePublic * 2;
+
+            }
+            else
+            {
+                isCrouching = true;
+                movementSpeed = 5.0f;
+            }
+            
+        }
+        else
+        {
+            isCrouching = false;
+            isSliding = false;
+            movementSpeed = 10.0f;
+            decelTimePrivate = decelTimePublic;
+            box.size = new Vector2(box.size.x, 6.8f);
+            box.offset = new Vector2(box.offset.x, 0.22f);
         }
     }
 }

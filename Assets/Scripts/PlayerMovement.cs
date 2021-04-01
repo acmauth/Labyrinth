@@ -12,6 +12,20 @@ public class PlayerMovement : MonoBehaviour
     [Range(10.0f, 100.0f)]
     public float jumpPower = 10.0f;
 
+
+    // acceleration related stuff 
+    [Range(10.0f, 3.0f)]
+    public float accelTime = 0.6f;
+    [Range(10.0f, 3.0f)]
+    public float decelTime = 0.2f;
+
+    private float timeAccelerating;
+    private float timeDecelarating;
+    private float lastAcceleration;
+    private float acceleration;
+    private float direction;
+    // end of accel related stuff
+
     private bool isGrounded;
     private bool jumpPressed;
     private BoxCollider2D box;
@@ -33,12 +47,35 @@ public class PlayerMovement : MonoBehaviour
     {
 
         ParseInput();
+        UpdateAcceleration();
         DetectGrounded();
         Move();
-      
         Jump();
     }
+    void UpdateAcceleration()
+    {
+        if (xAxis != 0.0f)
+        {
+            timeDecelarating = 0.0f;
+            timeAccelerating += Time.deltaTime;
 
+            direction = xAxis;
+
+            acceleration = xAxis * (timeAccelerating / accelTime);
+            acceleration = Mathf.Clamp(acceleration, -1.0f, 1.0f);
+            lastAcceleration = acceleration;
+        }
+        else
+        {
+            timeAccelerating = 0.0f;
+            timeDecelarating += Time.deltaTime;
+
+            acceleration = Mathf.Abs(lastAcceleration) - timeDecelarating / decelTime;
+            acceleration = Mathf.Clamp(acceleration, 0.0f, 1.0f);
+            acceleration *= direction;
+        }
+
+    }
     void ParseInput()
     {
 
@@ -48,16 +85,16 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        this.transform.position += xAxis * Vector3.right * Time.deltaTime * movementSpeed;
+        transform.position += Vector3.right * Time.deltaTime * movementSpeed * acceleration;
 
         if (xAxis > 0)
         {
-            GetComponent<SpriteRenderer>().flipX = true;
+            GetComponent<SpriteRenderer>().flipX = false;
         }
 
         else if (xAxis < 0)
         {
-            GetComponent<SpriteRenderer>().flipX = false;
+            GetComponent<SpriteRenderer>().flipX = true;
         }
     }
 

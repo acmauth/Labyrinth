@@ -30,13 +30,11 @@ public class ShowStats : MonoBehaviour
         Text[] texts = gameObject.GetComponentsInChildren<Text>();
 
         int i = 0;
-        foreach (Text text in texts)
+        foreach (var text in texts)
         {
-            // Only the highscore text have font size less than 40. (Prevents us from changing texts like the title that have a big font).
             if (text.fontSize < 40)
             {
-                // Format = "Name : Score"
-                text.text = (i+1) + ". " + _stats.usernames[i] + " : " + _stats.scores[i];
+                text.text = (i + 1) + ". " + _stats.stats[i].Key + " : " + _stats.stats[i].Value;
                 i++;
             }
         }

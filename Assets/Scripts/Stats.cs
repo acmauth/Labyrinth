@@ -1,48 +1,34 @@
 using System.Collections.Generic;
 
 /*
- * This class represents the stats of the game that will be saved.
+ * This class represents the stats of the game.
  *
- * Η κλάση αυτή αναπαραστά τα stats του παιχνιδιού τα οποία θα σωθούν.
+ * Η κλάση αυτή αναπαραστά τα stats του παιχνιδιού.
  */
 [System.Serializable]
 public class Stats
 {
-    public List<int> scores;
-    public List<string> usernames;
+    public List<KeyValuePair<string, int>> stats;
 
     public Stats()
     {
-        scores = new List<int>(10);
-        usernames = new List<string>(10);
-        for (int i = 0; i < scores.Capacity; i++)
+        stats = new List<KeyValuePair<string, int>>();
+        for (int i = 0; i < 10; ++i)
         {
-            scores.Add(0);
-            usernames.Add("AAA");
+            stats.Add(new KeyValuePair<string, int>("AAA", 0));
         }
     }
 
-    public Stats(List<int> scores, List<string> usernames)
+    public Stats(string username, int score)
     {
-        this.scores = scores;
-        this.usernames = usernames;
+        stats = new List<KeyValuePair<string, int>>{ new KeyValuePair<string, int>(username,score) };
     }
 
-    public void Add(int score, string username)
+    public void Add(KeyValuePair<string, int> pair)
     {
-        this.scores.Add(score);
-        this.usernames.Add(username);
-            
-        this.scores.Sort();
-        this.usernames.Sort();
-
-        if (this.scores.Count > 10)
-        {
-            this.scores.RemoveAt(0);
-            this.usernames.RemoveAt(0);
-        }
-        
-        this.scores.Reverse();
-        this.usernames.Reverse();
+        stats.Add(pair);
+        stats.Sort((a,b)=>a.Value.CompareTo(b.Value));
+        stats.Reverse();
+        stats.RemoveAt(stats.Count-1);
     }
 }

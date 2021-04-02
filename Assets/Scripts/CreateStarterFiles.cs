@@ -10,8 +10,7 @@ using UnityEngine;
  */
 public class CreateStarterFiles : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (!File.Exists(SaveSystem.settingsPath))
         {
@@ -40,14 +39,11 @@ public class CreateStarterFiles : MonoBehaviour
             Debug.Log("Levels file created.");
         }
 
-        if (!File.Exists(SaveSystem.dataPath))
-        {
-            PlayerData data = new PlayerData();
-            SaveSystem.currentPath = SaveSystem.dataPath;
-            SaveSystem.Save(data);
-            
-            Debug.Log("Data file created.");
-        }
+        // SaveSystem.currentPath = SaveSystem.statsPath;
+        // Stats stats1 = SaveSystem.Load<Stats>();
+        // PlayerData data1 = new PlayerData("Someone", 650f, 1000f);
+        // stats1.Add(data1);
+        // SaveSystem.Save(stats1);
     }
 
     /*

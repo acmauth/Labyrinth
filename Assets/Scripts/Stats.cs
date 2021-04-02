@@ -8,27 +8,21 @@ using System.Collections.Generic;
 [System.Serializable]
 public class Stats
 {
-    public List<KeyValuePair<string, float>> stats;
+    public List<PlayerData> stats;
 
     public Stats()
     {
-        stats = new List<KeyValuePair<string, float>>();
+        stats = new List<PlayerData>();
         for (int i = 0; i < 10; ++i)
         {
-            stats.Add(new KeyValuePair<string, float>("AAA", 0));
+            stats.Add(new PlayerData("AAA", 0, 0));
         }
     }
 
-    public Stats(string username, int score)
+    public void Add(PlayerData data)
     {
-        stats = new List<KeyValuePair<string, float>>{ new KeyValuePair<string, float>(username,score) };
-    }
-
-    public void Add(KeyValuePair<string, float> pair)
-    {
-        stats.Add(pair);
-        stats.Sort((a,b)=>a.Value.CompareTo(b.Value));
+        stats.Add(data);
+        stats.Sort((a,b)=>a.avgTime.CompareTo(b.avgTime));
         stats.Reverse();
-        stats.RemoveAt(stats.Count-1);
     }
 }

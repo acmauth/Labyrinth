@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -51,12 +52,7 @@ public class LevelsController : MonoBehaviour
     {
         if (levels[level-1].Unlocked())
         {
-            SaveSystem.currentPath = SaveSystem.dataPath;
-            PlayerData data = SaveSystem.Load<PlayerData>();
-            if (data != default) data = new PlayerData();
-            if (data != null) data.username = usernameField.text;
-            SaveSystem.Save(data);
-
+            GetUsername();
 
             Debug.Log("Going to Level " + level);
             //SceneManager.LoadScene("Level" + level);
@@ -64,21 +60,6 @@ public class LevelsController : MonoBehaviour
             
             
             // Temporary (When the levels are implemented this will be deleted)
-            SaveSystem.currentPath = SaveSystem.dataPath;
-            data = SaveSystem.Load<PlayerData>();
-            if (data != null)
-            {
-                data.score = Random.Range(10f, 1500f);
-                SaveSystem.Save(data);
-                
-                Debug.Log(data.username + " : " + data.score);
-                
-                SaveSystem.currentPath = SaveSystem.statsPath;
-                Stats stats = SaveSystem.Load<Stats>();
-                stats.Add(data.ReturnPair());
-                SaveSystem.Save(stats);
-            }
-            
             SaveSystem.currentPath = SaveSystem.levelsPath;
             UnlockedLevels unclocked = SaveSystem.Load<UnlockedLevels>();
             unclocked.AddUnlocked(level);
@@ -99,5 +80,32 @@ public class LevelsController : MonoBehaviour
             level.CheckUnlocked();
             //Debug.Log(level.level);
         }
+    }
+
+    private void GetUsername()
+    {
+        // Search for a player in our database with the same username of the text field
+        SaveSystem.currentPath = SaveSystem.statsPath;
+        Stats stats = SaveSystem.Load<Stats>();
+        if (stats == null) stats = new Stats();
+            
+        PlayerData data = new PlayerData();
+        foreach (var player in stats.stats)
+        {
+            if (player.username == usernameField.text)
+            {
+                data = player;
+                Debug.Log("Found Player");
+            }
+        }
+
+        // If the player if not found then create a new player with the given username and add it to the database
+        if (data.username == "")
+        {
+            data.username = usernameField.text;
+            Debug.Log("Player not found.");
+        }
+        stats.Add(data);
+        SaveSystem.Save(stats);
     }
 }

@@ -15,7 +15,7 @@ public static class SaveSystem
     public static readonly string settingsPath = Application.persistentDataPath + "player.settings";
     public static readonly string statsPath = Application.persistentDataPath + "player.stats";
     public static readonly string levelsPath = Application.persistentDataPath + "player.levels";
-    public static readonly string dataPath = Application.persistentDataPath + "player.data";
+    //public static readonly string dataPath = Application.persistentDataPath + "player.data";
 
     // Saves a certain data type at the current path location
     public static void Save<T>(T data)
@@ -45,7 +45,7 @@ public static class SaveSystem
         }
         else
         {
-            Debug.LogError("Save file not found in " + currentPath);
+            //Debug.LogError("Save file not found in " + currentPath);
             return default(T);
         }
     }
@@ -56,6 +56,6 @@ public static class SaveSystem
         File.Delete(settingsPath);
         File.Delete(statsPath);
         File.Delete(levelsPath);
-        File.Delete(dataPath);
+        //File.Delete(dataPath);
     }
 }

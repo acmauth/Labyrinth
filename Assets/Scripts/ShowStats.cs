@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +18,7 @@ public class ShowStats : MonoBehaviour
     {
         SaveSystem.currentPath = SaveSystem.statsPath;
         _stats = SaveSystem.Load<Stats>();
-        if (_stats == default)
+        if (_stats == default || _stats == null)
         {
             _stats = new Stats();
             SaveSystem.Save(_stats);
@@ -35,7 +37,8 @@ public class ShowStats : MonoBehaviour
         {
             if (text.fontSize < 40)
             {
-                text.text = (i + 1) + ". " + _stats.stats[i].Key + " : " + Math.Floor(_stats.stats[i].Value);
+                text.text = (i + 1) + ". " + _stats.stats[i].username + " : " + Math.Floor(_stats.stats[i].avgTime) + " : " +
+                            Math.Floor(_stats.stats[i].score);
                 i++;
             }
         }

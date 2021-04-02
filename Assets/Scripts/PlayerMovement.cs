@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private bool isSliding;
+    private bool slidePressed = false;
 
     private BoxCollider2D box;
     private Rigidbody2D rb;
@@ -62,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
         Move();
         Jump();
         Crouch();
+        Slide();
     }
 
     // computing the acceleration
@@ -95,6 +97,7 @@ public class PlayerMovement : MonoBehaviour
         xAxis = Input.GetAxisRaw("Horizontal");
         jumpPressed = Input.GetKeyDown(KeyCode.Space);
         crouchPressed = Input.GetKey(KeyCode.LeftShift);
+        slidePressed = Input.GetKeyDown(KeyCode.S);
     }
 
     // how the player moves
@@ -134,29 +137,34 @@ public class PlayerMovement : MonoBehaviour
         {
             box.size = new Vector2(box.size.x, 4.5f);
             box.offset = new Vector2(box.offset.x, 1.1f);
-
-            if (timeAccelerating > 1.0f)
-            {
-                isCrouching = false;
-                isSliding = true;
-                decelTimePrivate = decelTimePublic * 2;
-
-            }
-            else
-            {
-                isCrouching = true;
-                movementSpeed = 5.0f;
-            }
-            
+            isCrouching = true;
+            movementSpeed = 5.0f;
         }
-        else
+        else if(!slidePressed)
         {
             isCrouching = false;
-            isSliding = false;
             movementSpeed = 10.0f;
-            decelTimePrivate = decelTimePublic;
             box.size = new Vector2(box.size.x, 6.8f);
             box.offset = new Vector2(box.offset.x, 0.22f);
         }
     }
+
+    void Slide()
+    {
+        if (slidePressed)
+        {
+            isSliding = true;
+            box.size = new Vector2(box.size.x, 4.5f);
+            box.offset = new Vector2(box.offset.x, 1.1f);
+            rb.AddForce(new Vector2(xAxis, 0) * 10.0f, ForceMode2D.Impulse);
+
+        }
+        else if(!crouchPressed)
+        {
+            isSliding = false;
+            box.size = new Vector2(box.size.x, 6.8f);
+            box.offset = new Vector2(box.offset.x, 0.22f);
+        }
+    }
+
 }

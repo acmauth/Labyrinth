@@ -10,6 +10,7 @@
           <e p="Level.cs" t="Include" />
           <e p="LevelsController.cs" t="Include" />
           <e p="Menu.cs" t="Include" />
+          <e p="PlayerData.cs" t="Include" />
           <e p="PlayerMovement.cs" t="Include" />
           <e p="SaveSystem.cs" t="Include" />
           <e p="ShowStats.cs" t="Include" />

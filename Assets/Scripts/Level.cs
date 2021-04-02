@@ -14,7 +14,7 @@ public class Level : MonoBehaviour
     public Button button;
     public int level;
     public List<int> parentLevels;
-    private static List<int> unlockedLevels;
+    private static UnlockedLevels levels;
     private bool unlocked; 
 
     // Start is called before the first frame update
@@ -34,8 +34,7 @@ public class Level : MonoBehaviour
 
         // Initialize the unlocked levels
         SaveSystem.currentPath = SaveSystem.levelsPath;
-        UnlockedLevels temp = SaveSystem.Load<UnlockedLevels>();
-        unlockedLevels = temp.unlocked;
+        levels = SaveSystem.Load<UnlockedLevels>();
     }
 
     public bool Unlocked()
@@ -45,32 +44,30 @@ public class Level : MonoBehaviour
 
     public void CheckUnlocked()
     {
-        // A simple check to avoid errors
-        if (unlockedLevels == null)
+        // Update the content
+        SaveSystem.currentPath = SaveSystem.levelsPath;
+        levels = SaveSystem.Load<UnlockedLevels>();
+        
+
+        // If this level is in the unlocked list then it is unlocked
+        if (levels.unlocked.Contains(level))
         {
-            SaveSystem.currentPath = SaveSystem.levelsPath;
-            UnlockedLevels temp = SaveSystem.Load<UnlockedLevels>();
-            unlockedLevels = temp.unlocked;
+            unlocked = true;
+            button.interactable = true;
+            return;
         }
         
         unlocked = true;
-        // If any of the parent levels are not in the unlocked levels then this level is not unlocked
+        // If any of the parent levels are not in the completed levels then this level is not unlocked
         foreach (int parent in parentLevels)
         {
-            if (!unlockedLevels.Contains(parent))
+            if (!levels.completed.Contains(parent))
             {
                 unlocked = false;
             }
         }
 
         // Set the button as interactable if the level is unlocked
-        if (!unlocked)
-        {
-            button.interactable = false;
-        }
-        else
-        {
-            button.interactable = true;
-        }
+        button.interactable = unlocked;
     }
 }

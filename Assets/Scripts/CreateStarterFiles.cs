@@ -39,6 +39,15 @@ public class CreateStarterFiles : MonoBehaviour
             
             Debug.Log("Levels file created.");
         }
+
+        if (!File.Exists(SaveSystem.dataPath))
+        {
+            PlayerData data = new PlayerData();
+            SaveSystem.currentPath = SaveSystem.dataPath;
+            SaveSystem.Save(data);
+            
+            Debug.Log("Data file created.");
+        }
     }
 
     /*
@@ -53,5 +62,6 @@ public class CreateStarterFiles : MonoBehaviour
     public void DeleteFiles()
     {
         SaveSystem.ClearAllPathFiles();
+        Debug.Log("Deleted");
     }
 }

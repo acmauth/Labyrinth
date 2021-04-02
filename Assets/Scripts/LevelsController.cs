@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /*
  * This class represents a controller for the levels. It contains all of the levels.
@@ -9,11 +10,18 @@ using UnityEngine.SceneManagement;
  */
 public class LevelsController : MonoBehaviour
 {
+    public InputField usernameField;
+    
     public List<Level> levels;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (usernameField == null)
+        {
+            usernameField = FindObjectOfType<InputField>();
+        }
+        
         // If the levels are not specified in the inspector then find all the objects that have a Level script
         if (levels == null)
         {
@@ -43,13 +51,38 @@ public class LevelsController : MonoBehaviour
     {
         if (levels[level-1].Unlocked())
         {
+            SaveSystem.currentPath = SaveSystem.dataPath;
+            PlayerData data = SaveSystem.Load<PlayerData>();
+            if (data != default) data = new PlayerData();
+            if (data != null) data.username = usernameField.text;
+            SaveSystem.Save(data);
+
+
             Debug.Log("Going to Level " + level);
             //SceneManager.LoadScene("Level" + level);
-
+            
+            
+            
             // Temporary (When the levels are implemented this will be deleted)
+            SaveSystem.currentPath = SaveSystem.dataPath;
+            data = SaveSystem.Load<PlayerData>();
+            if (data != null)
+            {
+                data.score = Random.Range(10f, 1500f);
+                SaveSystem.Save(data);
+                
+                Debug.Log(data.username + " : " + data.score);
+                
+                SaveSystem.currentPath = SaveSystem.statsPath;
+                Stats stats = SaveSystem.Load<Stats>();
+                stats.Add(data.ReturnPair());
+                SaveSystem.Save(stats);
+            }
+            
             SaveSystem.currentPath = SaveSystem.levelsPath;
             UnlockedLevels unclocked = SaveSystem.Load<UnlockedLevels>();
-            unclocked.Add(level);
+            unclocked.AddUnlocked(level);
+            unclocked.AddCompleted(level);
             SaveSystem.Save(unclocked);
             CheckLevels();
         }

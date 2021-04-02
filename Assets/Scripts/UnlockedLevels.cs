@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 /*
@@ -6,20 +5,29 @@ using System.Collections.Generic;
  *
  * Η κλάση αυτή αναπαραστά τα επίπεδα που έχουν ολοκληρωθεί.
  */
-[Serializable]
+[System.Serializable]
 public class UnlockedLevels
 {
-    public List<int> unlocked;
+    public List<int> unlocked; // Unlocked levels
+    public List<int> completed; // Completed levels
 
     public UnlockedLevels()
     {
         unlocked = new List<int> {0};
+        completed = new List<int> {0};
     }
 
-    public void Add(int level)
+    public void AddUnlocked(int level)
     {
         if (unlocked.Contains(level)) return;
         unlocked.Add(level);
         unlocked.Sort();
+    }
+
+    public void AddCompleted(int level)
+    {
+        if (completed.Contains(level)) return;
+        completed.Add(level);
+        completed.Sort();
     }
 }

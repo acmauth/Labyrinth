@@ -8,23 +8,23 @@ using System.Collections.Generic;
 [System.Serializable]
 public class Stats
 {
-    public List<KeyValuePair<string, int>> stats;
+    public List<KeyValuePair<string, float>> stats;
 
     public Stats()
     {
-        stats = new List<KeyValuePair<string, int>>();
+        stats = new List<KeyValuePair<string, float>>();
         for (int i = 0; i < 10; ++i)
         {
-            stats.Add(new KeyValuePair<string, int>("AAA", 0));
+            stats.Add(new KeyValuePair<string, float>("AAA", 0));
         }
     }
 
     public Stats(string username, int score)
     {
-        stats = new List<KeyValuePair<string, int>>{ new KeyValuePair<string, int>(username,score) };
+        stats = new List<KeyValuePair<string, float>>{ new KeyValuePair<string, float>(username,score) };
     }
 
-    public void Add(KeyValuePair<string, int> pair)
+    public void Add(KeyValuePair<string, float> pair)
     {
         stats.Add(pair);
         stats.Sort((a,b)=>a.Value.CompareTo(b.Value));

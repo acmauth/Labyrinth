@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,8 +11,8 @@ using UnityEngine.UI;
 public class ShowStats : MonoBehaviour
 {
     private Stats _stats;
-    
-    private void Awake()
+
+    private void OnEnable()
     {
         SaveSystem.currentPath = SaveSystem.statsPath;
         _stats = SaveSystem.Load<Stats>();
@@ -23,7 +24,7 @@ public class ShowStats : MonoBehaviour
 
         SetTexts();
     }
-
+    
     private void SetTexts()
     {
         // This may return some texts like the title that we do not want to change
@@ -34,7 +35,7 @@ public class ShowStats : MonoBehaviour
         {
             if (text.fontSize < 40)
             {
-                text.text = (i + 1) + ". " + _stats.stats[i].Key + " : " + _stats.stats[i].Value;
+                text.text = (i + 1) + ". " + _stats.stats[i].Key + " : " + Math.Floor(_stats.stats[i].Value);
                 i++;
             }
         }

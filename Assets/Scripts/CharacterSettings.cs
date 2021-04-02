@@ -9,7 +9,7 @@ public class CharacterSettings
 
     public CharacterSettings()
     {
-        this.volume = 0f;
+        this.volume = 100f;
     }
     
     public CharacterSettings(float volume)

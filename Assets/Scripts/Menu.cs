@@ -16,7 +16,13 @@ public class Menu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _volume = 0f;
+        SaveSystem.currentPath = SaveSystem.settingsPath;
+        CharacterSettings settings = SaveSystem.Load<CharacterSettings>();
+        _volume = settings == default ? 100f : settings.volume;
+        foreach (var slider in volumeSliders)
+        {
+            slider.value = _volume;
+        }
     }
 
     // Updates the volume property everytime the value in the active slider is changed.
@@ -35,7 +41,7 @@ public class Menu : MonoBehaviour
         // Get the save settings from the file and change the volume
         SaveSystem.currentPath = SaveSystem.settingsPath;
         CharacterSettings settings = SaveSystem.Load<CharacterSettings>();
-        if (settings == default)
+        if (settings == null)
         {
             settings = new CharacterSettings(_volume);
         }
@@ -43,7 +49,7 @@ public class Menu : MonoBehaviour
         {
             settings.volume = _volume;
         }
-        //SaveSystem.Save(settings);
+        SaveSystem.Save(settings);
     }
 
     // Quits the game when the appropriate button is pressed

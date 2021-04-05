@@ -22,7 +22,8 @@ public class Stats
     public void Add(PlayerData data)
     {
         stats.Add(data);
-        stats.Sort((a,b)=>a.avgTime.CompareTo(b.avgTime));
+        Comp comparer = new Comp();
+        stats.Sort(comparer);
         stats.Reverse();
     }
 }

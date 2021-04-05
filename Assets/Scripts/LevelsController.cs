@@ -11,16 +11,16 @@ using UnityEngine.UI;
  */
 public class LevelsController : MonoBehaviour
 {
-    public InputField usernameField;
+    public GetUsername username;
     
     public List<Level> levels;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (usernameField == null)
+        if (username == null)
         {
-            usernameField = FindObjectOfType<InputField>();
+            username = FindObjectOfType<GetUsername>();
         }
         
         // If the levels are not specified in the inspector then find all the objects that have a Level script
@@ -38,7 +38,7 @@ public class LevelsController : MonoBehaviour
         // Sort the levels
         levels.Sort((a,b)=>a.level.CompareTo(b.level));
         
-        CheckLevels();
+        CheckLevels(username.playerPos);
     }
 
     /*
@@ -52,20 +52,18 @@ public class LevelsController : MonoBehaviour
     {
         if (levels[level-1].Unlocked())
         {
-            GetUsername();
-
             Debug.Log("Going to Level " + level);
             //SceneManager.LoadScene("Level" + level);
             
             
             
             // Temporary (When the levels are implemented this will be deleted)
-            SaveSystem.currentPath = SaveSystem.levelsPath;
-            UnlockedLevels unclocked = SaveSystem.Load<UnlockedLevels>();
-            unclocked.AddUnlocked(level);
-            unclocked.AddCompleted(level);
-            SaveSystem.Save(unclocked);
-            CheckLevels();
+            SaveSystem.currentPath = SaveSystem.statsPath;
+            Stats stats = SaveSystem.Load<Stats>();
+            stats.stats[username.playerPos].levels.AddUnlocked(level);
+            stats.stats[username.playerPos].levels.AddCompleted(level);
+            SaveSystem.Save(stats);
+            CheckLevels(username.playerPos);
         }
         else
         {
@@ -73,39 +71,18 @@ public class LevelsController : MonoBehaviour
         }
     }
     
-    private void CheckLevels()
+    private void CheckLevels(int playerPos)
     {
         foreach (Level level in levels)
         {
-            level.CheckUnlocked();
+            level.CheckUnlocked(playerPos);
             //Debug.Log(level.level);
         }
     }
 
-    private void GetUsername()
+    private void OnEnable()
     {
-        // Search for a player in our database with the same username of the text field
-        SaveSystem.currentPath = SaveSystem.statsPath;
-        Stats stats = SaveSystem.Load<Stats>();
-        if (stats == null) stats = new Stats();
-            
-        PlayerData data = new PlayerData();
-        foreach (var player in stats.stats)
-        {
-            if (player.username == usernameField.text)
-            {
-                data = player;
-                Debug.Log("Found Player");
-            }
-        }
-
-        // If the player if not found then create a new player with the given username and add it to the database
-        if (data.username == "")
-        {
-            data.username = usernameField.text;
-            Debug.Log("Player not found.");
-        }
-        stats.Add(data);
-        SaveSystem.Save(stats);
+        username.FindPlayer();
+        CheckLevels(username.playerPos);
     }
 }

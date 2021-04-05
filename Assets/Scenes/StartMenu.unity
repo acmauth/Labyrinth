@@ -969,7 +969,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5550cdd198025e34aa333a81cad2be3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  usernameField: {fileID: 602318401}
+  username: {fileID: 602318404}
   levels:
   - {fileID: 1808691341}
   - {fileID: 262984421}
@@ -1567,6 +1567,7 @@ GameObject:
   - component: {fileID: 602318403}
   - component: {fileID: 602318402}
   - component: {fileID: 602318401}
+  - component: {fileID: 602318404}
   m_Layer: 5
   m_Name: Username (Input Field)
   m_TagString: Untagged
@@ -1699,6 +1700,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 602318399}
   m_CullTransparentMesh: 1
+--- !u!114 &602318404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602318399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83541fccba0bec247b60087a9838a7e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  field: {fileID: 602318401}
+  playerPos: 0
 --- !u!1 &624097414
 GameObject:
   m_ObjectHideFlags: 0
@@ -4818,6 +4833,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 602318404}
+        m_TargetAssemblyTypeName: GetUsername, Assembly-CSharp
+        m_MethodName: FindPlayer
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

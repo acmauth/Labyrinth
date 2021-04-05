@@ -14,7 +14,7 @@ public class Level : MonoBehaviour
     public Button button;
     public int level;
     public List<int> parentLevels;
-    private static UnlockedLevels levels;
+    private UnlockedLevels levels;
     private bool unlocked; 
 
     // Start is called before the first frame update
@@ -31,10 +31,6 @@ public class Level : MonoBehaviour
         {
             button = gameObject.GetComponent<Button>();
         }
-
-        // Initialize the unlocked levels
-        SaveSystem.currentPath = SaveSystem.levelsPath;
-        levels = SaveSystem.Load<UnlockedLevels>();
     }
 
     public bool Unlocked()
@@ -42,12 +38,14 @@ public class Level : MonoBehaviour
         return unlocked;
     }
 
-    public void CheckUnlocked()
+    public void CheckUnlocked(int pos)
     {
-        // Update the content
-        SaveSystem.currentPath = SaveSystem.levelsPath;
-        levels = SaveSystem.Load<UnlockedLevels>();
+        SaveSystem.currentPath = SaveSystem.statsPath;
+        Stats stats = SaveSystem.Load<Stats>();
+        levels = stats.stats[pos].levels;
         
+        //Debug.Log("Checking level " + level + " for player : " + stats.stats[pos].username 
+        //            + " at " + pos);
 
         // If this level is in the unlocked list then it is unlocked
         if (levels.unlocked.Contains(level))

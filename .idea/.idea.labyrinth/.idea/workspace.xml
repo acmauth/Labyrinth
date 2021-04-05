@@ -20,8 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7c3b9c8-6404-4179-b4c7-7185ff32bf0d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.labyrinth/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.labyrinth/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.labyrinth/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.labyrinth/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CreateStarterFiles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CreateStarterFiles.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LevelsController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerData.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/SaveSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SaveSystem.cs" afterDir="false" />
@@ -43,22 +44,26 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UnlockedLevels.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Stats.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CreateStarterFiles.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GetUsername.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ShowStats.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Comp.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/StatsData.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/UnlockedLevels.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Level.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/CharacterSettings.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Menu.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Stats.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ShowStats.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/SaveSystem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/CreateStarterFiles.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ShowStats.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UnlockedLevels.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SaveSystem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerData.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Level.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GetUsername.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LevelsController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Comp.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Stats.cs" />
       </list>
     </option>
   </component>
@@ -68,6 +73,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -132,6 +138,8 @@
       <workItem from="1617295699861" duration="3614000" />
       <workItem from="1617362600392" duration="3151000" />
       <workItem from="1617399245113" duration="2449000" />
+      <workItem from="1617439234863" duration="1969000" />
+      <workItem from="1617478245542" duration="4615000" />
     </task>
     <servers />
   </component>
@@ -176,9 +184,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="VCS.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1617365771050" />
-    <state x="369" y="0" width="1177" height="1976" key="search.everywhere.popup" timestamp="1617401206241">
+    <state x="369" y="0" width="1177" height="1976" key="search.everywhere.popup" timestamp="1617478289056">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="369" y="0" width="1177" height="1976" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1617401206241" />
+    <state x="369" y="0" width="1177" height="1976" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1617478289056" />
   </component>
 </project>

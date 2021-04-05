@@ -67,5 +67,11 @@ public class Level : MonoBehaviour
 
         // Set the button as interactable if the level is unlocked
         button.interactable = unlocked;
+
+        if (unlocked)
+        {
+            stats.stats[pos].levels.AddUnlocked(level);
+            SaveSystem.Save(stats);
+        }
     }
 }

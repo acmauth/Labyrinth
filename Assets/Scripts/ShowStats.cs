@@ -33,10 +33,11 @@ public class ShowStats : MonoBehaviour
         int i = 0;
         foreach (var text in texts)
         {
-            if (text.fontSize < 40)
+            if (text.CompareTag("Score"))
             {
-                text.text = (i + 1) + ". " + _stats.stats[i].username + " : " + Math.Floor(_stats.stats[i].avgTime) + " : " +
-                            Math.Floor(_stats.stats[i].score);
+                text.text = (i + 1) + ". " + _stats.stats[i].username + " : " +
+                            Math.Floor(_stats.stats[i].avgTime) +
+                            " sec : " + Math.Floor(_stats.stats[i].score);
                 i++;
             }
         }

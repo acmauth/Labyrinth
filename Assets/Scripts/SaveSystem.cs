@@ -14,7 +14,6 @@ public static class SaveSystem
     public static string currentPath = null; // The current path 
     public static readonly string settingsPath = Application.persistentDataPath + "player.settings";
     public static readonly string statsPath = Application.persistentDataPath + "player.stats";
-    public static readonly string levelsPath = Application.persistentDataPath + "player.levels";
 
     // Saves a certain data type at the current path location
     public static void Save<T>(T data)
@@ -54,6 +53,5 @@ public static class SaveSystem
     {
         File.Delete(settingsPath);
         File.Delete(statsPath);
-        //File.Delete(levelsPath);
     }
 }

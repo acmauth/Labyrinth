@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 /*
  * This class represents a controller for the levels. It contains all of the levels.
@@ -53,17 +51,7 @@ public class LevelsController : MonoBehaviour
         if (levels[level-1].Unlocked())
         {
             Debug.Log("Going to Level " + level);
-            //SceneManager.LoadScene("Level" + level);
-            
-            
-            
-            // Temporary (When the levels are implemented this will be deleted)
-            SaveSystem.currentPath = SaveSystem.statsPath;
-            Stats stats = SaveSystem.Load<Stats>();
-            stats.stats[username.playerPos].levels.AddUnlocked(level);
-            stats.stats[username.playerPos].levels.AddCompleted(level);
-            SaveSystem.Save(stats);
-            CheckLevels(username.playerPos);
+            SceneManager.LoadScene("Level" + level);
         }
         else
         {

@@ -1,6 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * This class get the username from the input field and checks to see if the player already exists in the
+ * database. If not it creates an new player in the database with this username.
+ *
+ * Αυτή η κλάση παίρνει το username που έδωσε ο χρήστης και βλέπει αν υπάρχει παίκτης με το ίδιο username.
+ * Αν δεν υπάρχει τότε δημιουργεί ένα καινούργιο παίκτη με αυτό το username.
+ */
 public class GetUsername : MonoBehaviour
 {
     public InputField field;
@@ -31,7 +38,7 @@ public class GetUsername : MonoBehaviour
             {
                 position = j;
                 playerPos = position;
-                Debug.Log("Found Player");
+                //Debug.Log("Found Player");
                 return;
             }
 
@@ -40,7 +47,7 @@ public class GetUsername : MonoBehaviour
 
         // If the player if not found then create a new player with the given username and add it to the database
         PlayerData data = new PlayerData(field.text, 0f, 0f);
-        Debug.Log("Player not found.");
+        //Debug.Log("Player not found.");
         
         stats.Add(data);
         SaveSystem.Save(stats);
@@ -54,13 +61,6 @@ public class GetUsername : MonoBehaviour
                 position = i;
                 flag = false;
             }
-        }
-
-        int temp = 0;
-        foreach (var player in stats.stats)
-        {
-            Debug.Log("Player " + player.username + " at " + temp);
-            temp++;
         }
 
         playerPos = position;

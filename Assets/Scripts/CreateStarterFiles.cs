@@ -29,21 +29,18 @@ public class CreateStarterFiles : MonoBehaviour
             
             Debug.Log("Stats file created.");
         }
+    }
 
-        if (!File.Exists(SaveSystem.levelsPath))
+    /*
+     * When you hold left or right control and then press Delete then the DeleteFiles method is called.
+     */
+    private void Update()
+    {
+        if ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) &&
+            Input.GetKeyDown(KeyCode.Delete))
         {
-            UnlockedLevels unlocked = new UnlockedLevels();
-            SaveSystem.currentPath = SaveSystem.levelsPath;
-            SaveSystem.Save(unlocked);
-            
-            Debug.Log("Levels file created.");
+            DeleteFiles();
         }
-
-        // SaveSystem.currentPath = SaveSystem.statsPath;
-        // Stats stats1 = SaveSystem.Load<Stats>();
-        // PlayerData data1 = new PlayerData("Someone", 650f, 1000f);
-        // stats1.Add(data1);
-        // SaveSystem.Save(stats1);
     }
 
     /*
@@ -55,7 +52,7 @@ public class CreateStarterFiles : MonoBehaviour
      * Όταν τεστάρεις το παιχνίδι στον editor και θες να διαγράψεις τα αρχεία ώστε να τα ξαναφτιάξεις από την αρχή απλά πατάς το CAUTION κουμπί
      * και μετά όταν το ξανατεστάρεις θα δημιουργήσει ξανά τα αρχεία.
      */
-    public void DeleteFiles()
+    private void DeleteFiles()
     {
         SaveSystem.ClearAllPathFiles();
         Debug.Log("Deleted");

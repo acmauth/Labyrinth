@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 
+// This class is used to compare objects of the PlayerData class
 public class Comp : IComparer<PlayerData>
 {
     public int Compare(PlayerData x, PlayerData y)

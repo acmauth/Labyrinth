@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /*
@@ -23,6 +24,8 @@ public class Menu : MonoBehaviour
         {
             slider.value = _volume;
         }
+
+        ChangeVolume();
     }
 
     // Updates the volume property everytime the value in the active slider is changed.
@@ -37,6 +40,8 @@ public class Menu : MonoBehaviour
         {
             slider.value = _volume;
         }
+        
+        ChangeVolume();
 
         // Get the save settings from the file and change the volume
         SaveSystem.currentPath = SaveSystem.settingsPath;
@@ -50,6 +55,12 @@ public class Menu : MonoBehaviour
             settings.volume = _volume;
         }
         SaveSystem.Save(settings);
+    }
+
+    private void ChangeVolume()
+    {
+        // Volume has to be from (0f, 1f)
+        AudioListener.volume = _volume / 100f;
     }
 
     // Quits the game when the appropriate button is pressed

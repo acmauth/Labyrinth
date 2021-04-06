@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Score
+  - In-Game Menu
   layers:
   - Default
   - TransparentFX

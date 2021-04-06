@@ -1870,7 +1870,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   field: {fileID: 602318401}
-  playerPos: 0
 --- !u!1 &624097414
 GameObject:
   m_ObjectHideFlags: 0

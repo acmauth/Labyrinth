@@ -20,14 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7c3b9c8-6404-4179-b4c7-7185ff32bf0d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.labyrinth/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.labyrinth/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.labyrinth/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.labyrinth/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player Canvas (Canvas).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player Canvas (Canvas).prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level1.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/StartMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/StartMenu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GetUsername.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GetUsername.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LevelsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ControlCanvas.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ControlCanvas.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CurrentPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CurrentPlayer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/InGameMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/InGameMenu.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,9 +65,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/CreateStarterFiles.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/DontDestroy.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Menu.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ControlCanvas.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GetUsername.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LevelsController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ControlCanvas.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/CurrentPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/InGameMenu.cs" />
       </list>
@@ -149,6 +148,7 @@
       <workItem from="1617478245542" duration="4615000" />
       <workItem from="1617635610507" duration="1192000" />
       <workItem from="1617735146706" duration="4514000" />
+      <workItem from="1617897833487" duration="1402000" />
     </task>
     <servers />
   </component>

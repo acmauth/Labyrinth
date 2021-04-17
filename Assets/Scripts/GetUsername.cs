@@ -11,8 +11,7 @@ using UnityEngine.UI;
 public class GetUsername : MonoBehaviour
 {
     public InputField field;
-    public int playerPos;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +36,7 @@ public class GetUsername : MonoBehaviour
             if (player.username == field.text)
             {
                 position = j;
-                playerPos = position;
+                CurrentPlayer.ChangePosition(position);
                 //Debug.Log("Found Player");
                 return;
             }
@@ -63,6 +62,6 @@ public class GetUsername : MonoBehaviour
             }
         }
 
-        playerPos = position;
+        CurrentPlayer.ChangePosition(position);
     }
 }

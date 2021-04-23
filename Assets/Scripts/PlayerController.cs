@@ -66,6 +66,9 @@ public class PlayerController : MonoBehaviour
 
     //An empty object that helps with the ground check.
     public Transform groundCheck;
+
+    public Transform ceilingCheck;
+
     //A LayerMask of the layers that count as ground.
     public LayerMask groundLayer;
 
@@ -87,6 +90,7 @@ public class PlayerController : MonoBehaviour
         ParseInput();
         UpdateAcceleration();
         DetectGrounded();
+        DetectCeiling();
         Move();
         Jump();
         Crouch();
@@ -156,6 +160,13 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.05f, groundLayer);
     }
 
+    void DetectCeiling()
+    {
+        canStand = true;
+        canStand = !(Physics2D.OverlapCircle(ceilingCheck.position, 0.2f, groundLayer));
+    }
+
+
     //Making the player jump.
     void Jump()
     {
@@ -187,11 +198,15 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            isSliding = false;
-            isCrouching = false;
-            speed = movementSpeed;
-            boxColliderOfPlayer.size = new Vector2(boxColliderOfPlayer.size.x, 6.8f);
-            boxColliderOfPlayer.offset = new Vector2(boxColliderOfPlayer.offset.x, 0.22f);
+            if (canStand)
+            {
+                isSliding = false;
+                isCrouching = false;
+                speed = movementSpeed;
+                boxColliderOfPlayer.size = new Vector2(boxColliderOfPlayer.size.x, 6.8f);
+                boxColliderOfPlayer.offset = new Vector2(boxColliderOfPlayer.offset.x, 0.22f);
+            }
+            
         }
     }
 

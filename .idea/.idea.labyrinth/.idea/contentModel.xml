@@ -12,6 +12,7 @@
           <e p="CurrentPlayer.cs" t="Include" />
           <e p="GetUsername.cs" t="Include" />
           <e p="InGameMenu.cs" t="Include" />
+          <e p="Interactable.cs" t="Include" />
           <e p="Level.cs" t="Include" />
           <e p="LevelsController.cs" t="Include" />
           <e p="Menu.cs" t="Include" />

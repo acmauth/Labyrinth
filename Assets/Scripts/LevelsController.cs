@@ -16,11 +16,6 @@ public class LevelsController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (username == null)
-        {
-            username = FindObjectOfType<GetUsername>();
-        }
-        
         // If the levels are not specified in the inspector then find all the objects that have a Level script
         if (levels == null)
         {
@@ -36,7 +31,8 @@ public class LevelsController : MonoBehaviour
         // Sort the levels
         levels.Sort((a,b)=>a.level.CompareTo(b.level));
         
-        CheckLevels(username.playerPos);
+        //CheckLevels(username.playerPos);
+        CheckLevels(CurrentPlayer.GetPosition());
     }
 
     /*
@@ -70,7 +66,11 @@ public class LevelsController : MonoBehaviour
 
     private void OnEnable()
     {
-        username.FindPlayer();
-        CheckLevels(username.playerPos);
+        if (username != null)
+        {
+            username.FindPlayer();
+        }
+        
+        CheckLevels(CurrentPlayer.GetPosition());
     }
 }

@@ -7,8 +7,12 @@
         <e p="Scripts" t="Include">
           <e p="CharacterSettings.cs" t="Include" />
           <e p="Comp.cs" t="Include" />
+          <e p="ControlCanvas.cs" t="Include" />
           <e p="CreateStarterFiles.cs" t="Include" />
+          <e p="CurrentPlayer.cs" t="Include" />
           <e p="GetUsername.cs" t="Include" />
+          <e p="InGameMenu.cs" t="Include" />
+          <e p="Interactable.cs" t="Include" />
           <e p="Level.cs" t="Include" />
           <e p="LevelsController.cs" t="Include" />
           <e p="Menu.cs" t="Include" />
